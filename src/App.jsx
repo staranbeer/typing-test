@@ -8,13 +8,14 @@ const App = () => {
   function toggleDarkMode() {
     setIsDarkMode((i) => !i);
   }
+
   return (
     <motion.div
       animate
       transition={{ duration: 1 }}
-      className={`app-container  overflow-hidden  ${isDarkMode ? "dark" : ""}`}
+      className={`app-container  overflow-hidden  ${isDarkMode ? "dark" : ""} `}
     >
-      <div className="flex flex-col w-screen h-screen dark:bg-[#121212] dark:text-gray-400  ">
+      <div className="flex flex-col w-screen h-screen dark:bg-[#121212] dark:text-gray-400 text-gray-700 ">
         <Header toggleDarkMode={toggleDarkMode} />
         <Main />
       </div>
