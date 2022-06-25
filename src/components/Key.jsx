@@ -2,13 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const Key = ({ childKey, className = "", pressedKey = "" }) => {
-  let keyCode = "";
-
-  if (childKey === "Space bar") {
-    keyCode = " ";
-  } else {
-    keyCode = childKey;
-  }
+  let keyCode = childKey;
 
   return (
     <motion.div
