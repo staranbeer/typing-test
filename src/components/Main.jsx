@@ -8,9 +8,9 @@ const Main = () => {
 
   const [right, setRight] = useState(0);
   const [wrong, setWrong] = useState(0);
+  const [isSame, setIsSame] = useState(true);
 
   const keys = [
-    " ",
     "a",
     "b",
     "c",
@@ -75,15 +75,17 @@ const Main = () => {
           <span className="ml-2">{wrong}</span>
         </span>
       </p>
-      <div className="py-6 w-full   rounded-md overflow-hidden font-bold border-gray-400 max-w-4xl h-32 lg:block items-center mt-6">
+      <div className="py-5 w-full   rounded-md overflow-hidden font-bold border-gray-400 max-w-4xl lg:block items-center">
         <TestText
           setRight={setRight}
           setWrong={setWrong}
           clicked={clicked}
           pressedKey={pressedKey}
+          isSame={isSame}
+          setIsSame={setIsSame}
         />
       </div>
-      <Keyboard pressedKey={pressedKey} />
+      <Keyboard pressedKey={pressedKey} isSame={isSame} setIsSame={setIsSame} />
     </main>
   );
 };
