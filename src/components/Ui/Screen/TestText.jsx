@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Char from "./Char";
-import Modal from "./Modal";
+import Modal from "./../../util/Modal";
 
-const defaultText =
-  "LoremipsumdolorsitametconsecteturadipisicingelitEiusquiametfugavelitsuscipit omnisquidemitaquesimiliqueet?Cupiditatedignissimosprovidentvoluptatumlaborum aliquamvelofficiareiciendisveniamlaborevelitmollitia voluptatessuscipitasperioresexdeseruntnumquamIure"
-    .replace(" ", "")
-    .toLowerCase()
-    .split("");
+const defaultText = "Loremipsumdolorsitametconsecteturadipisicingel"
+  .replace(" ", "")
+  .toLowerCase()
+  .split("");
 
 const TestText = ({
   hasStarted,

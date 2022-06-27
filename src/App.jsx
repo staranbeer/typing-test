@@ -1,7 +1,6 @@
-import { motion } from "framer-motion";
 import React, { useState } from "react";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import Header from "./components/Ui/Header";
+import Main from "./components/Ui/Main";
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
 

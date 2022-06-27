@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Keyboard from "./Keyboard";
-import Modal from "./Modal";
-import TestText from "./TestText";
+import Keyboard from "./Keyboard/Keyboard";
+import Modal from "./../util/Modal";
+import Stats from "./Stats/Stats";
+import TestText from "./Screen/TestText";
 
 const Main = () => {
   const [pressedKey, setPressedKey] = useState("");
@@ -85,21 +86,9 @@ const Main = () => {
       <p className="bg-teal-500 text-white font-bold p-3 rounded-md  lg:hidden block text-center  ">
         This app is not yet available for mobile screens
       </p>
-      <p className="dark:bg-[#1e1e1e] shadow-md px-8 py-5 rounded-md text-white font-bold uppercase">
-        <span className="text-green-400 inline-block mr-8">
-          Right: <span className="ml-2">{right}</span>
-        </span>
-        <span className="text-red-400 inline-block">
-          wrong:
-          <span className="mx-5">{wrong}</span>
-        </span>
 
-        {/* <span className="text-red-400 inline-block">
-          time remaining:
-          <span className="ml-2">{time}</span>
-        </span> */}
-      </p>
-      <div className="py-5 w-full   rounded-md overflow-hidden font-bold border-gray-400 max-w-4xl lg:block items-center">
+      <Stats right={right} wrong={wrong} />
+      <div className="py-5 w-full hidden   rounded-md overflow-hidden font-bold border-gray-400 max-w-4xl lg:block items-center">
         <TestText
           setRight={setRight}
           setWrong={setWrong}
