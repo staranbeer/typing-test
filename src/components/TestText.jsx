@@ -1,57 +1,77 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Char from "./Char";
-import { v4 } from "uuid";
+import Modal from "./Modal";
+
+const defaultText =
+  "LoremipsumdolorsitametconsecteturadipisicingelitEiusquiametfugavelitsuscipit omnisquidemitaquesimiliqueet?Cupiditatedignissimosprovidentvoluptatumlaborum aliquamvelofficiareiciendisveniamlaborevelitmollitia voluptatessuscipitasperioresexdeseruntnumquamIure"
+    .replace(" ", "")
+    .toLowerCase()
+    .split("");
 
 const TestText = ({
+  hasStarted,
   clicked = false,
   pressedKey,
   setRight,
   setWrong,
   isSame,
   setIsSame,
+  right,
+  wrong,
 }) => {
-  const testText =
-    "Loremipsumdolorsitametconsecteturadipisicingelitkifnoiwenwfnwfenwfeinfeniwenffjopnfpqwniwonfweinfinwiwfeii"
-      .toLowerCase()
-      .split("");
-  const [screenText, setScreenText] = useState([testText[0]]);
-  const [counter, setCounter] = useState(1);
-
+  const [testText, setTestText] = useState(defaultText);
+  const [screenText, setScreenText] = useState(testText[0]);
+  const [showModal, setShowModal] = useState(false);
+  console.log(defaultText);
   useEffect(() => {
-    if (counter !== testText.length) {
-      if (clicked === true) {
-        let newArray = [testText[counter], ...screenText];
-        let lastElement = newArray[newArray.length - 1];
-
-        console.log(pressedKey, lastElement);
-
-        if (pressedKey === lastElement) {
-          setRight((i) => i + 1);
-          setIsSame(true);
-        } else {
-          setWrong((i) => i + 1);
-          setIsSame(false);
-        }
-
-        setScreenText([testText[counter]]);
-        setCounter((i) => i + 1);
+    let firstElement = testText[0];
+    setScreenText(firstElement);
+    if (clicked === true && hasStarted && testText.length > 0) {
+      console.log(pressedKey, screenText);
+      if (pressedKey === firstElement) {
+        setRight((i) => i + 1);
+        setIsSame(true);
+      } else {
+        setWrong((i) => i + 1);
+        setIsSame(false);
       }
+
+      setTestText((prevTestText) => [...prevTestText.slice(1)]);
     }
   }, [clicked]);
 
+  useEffect(() => {
+    if (hasStarted && testText.length === 0) {
+      setShowModal(true);
+    }
+  }, [hasStarted, testText]);
+
   return (
-    <motion.div className="text-center uppercase py-10">
-      <div className=" ">
-        <Char
-          makeRed={() => undefined}
-          sameKey={isSame}
-          makeGreen={() => undefined}
-        >
-          {screenText[0]}
-        </Char>
-      </div>
-    </motion.div>
+    <>
+      <motion.div className="text-center uppercase py-10">
+        <div className=" ">
+          <Char
+            makeRed={() => undefined}
+            sameKey={isSame}
+            makeGreen={() => undefined}
+          >
+            {screenText}
+          </Char>
+        </div>
+      </motion.div>
+
+      {showModal === true ? (
+        <Modal>
+          <div className="bg-green-500 text-white px-4 py-2">
+            right: {right}
+          </div>
+          <div className="mt-6 bg-red-500 text-white px-4 py-2">
+            wrong: {wrong}
+          </div>
+        </Modal>
+      ) : null}
+    </>
   );
 };
 

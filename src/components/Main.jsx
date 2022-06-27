@@ -1,14 +1,33 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Keyboard from "./Keyboard";
+import Modal from "./Modal";
 import TestText from "./TestText";
 
 const Main = () => {
   const [pressedKey, setPressedKey] = useState("");
   const [clicked, setClicked] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const [right, setRight] = useState(0);
   const [wrong, setWrong] = useState(0);
   const [isSame, setIsSame] = useState(true);
+
+  const [time, setTime] = useState(60);
+  let timerId;
+  function timeFunction() {
+    if (time > 0) {
+      setTime((prevTime) => prevTime - 1);
+    }
+  }
+  useEffect(() => {
+    if (hasStarted === true) {
+      timerId = setTimeout(() => {
+        timeFunction();
+      }, 1000);
+    }
+
+    return () => clearTimeout(timerId);
+  });
 
   const keys = [
     "a",
@@ -72,8 +91,13 @@ const Main = () => {
         </span>
         <span className="text-red-400 inline-block">
           wrong:
-          <span className="ml-2">{wrong}</span>
+          <span className="mx-5">{wrong}</span>
         </span>
+
+        {/* <span className="text-red-400 inline-block">
+          time remaining:
+          <span className="ml-2">{time}</span>
+        </span> */}
       </p>
       <div className="py-5 w-full   rounded-md overflow-hidden font-bold border-gray-400 max-w-4xl lg:block items-center">
         <TestText
@@ -83,9 +107,30 @@ const Main = () => {
           pressedKey={pressedKey}
           isSame={isSame}
           setIsSame={setIsSame}
+          hasStarted={hasStarted}
+          right={right}
+          wrong={wrong}
+          timerId={timerId}
+          setHasStarted={setHasStarted}
         />
       </div>
-      <Keyboard pressedKey={pressedKey} isSame={isSame} setIsSame={setIsSame} />
+      {hasStarted ? (
+        <Keyboard
+          pressedKey={pressedKey}
+          isSame={isSame}
+          setIsSame={setIsSame}
+        />
+      ) : (
+        <Modal callback={() => setHasStarted(true)}>
+          Type the character you see on the screen to get points.
+          <button
+            className="block max-w-max px-8 py-3 bg-blue-500 text-white shadow active:translate-y-1 rounded mx-auto mt-8"
+            onClick={() => setHasStarted(true)}
+          >
+            Click to start
+          </button>
+        </Modal>
+      )}
     </main>
   );
 };
