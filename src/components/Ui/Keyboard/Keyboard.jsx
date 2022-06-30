@@ -7,7 +7,7 @@ const Keyboard = ({ pressedKey, makeRed, makeGreen, isSame }) => {
   const keys3 = ["z", "x", "c", "v", "b", "n", "m"];
 
   return (
-    <div className=" justify-center items-center flex-col  lg:flex gap-2 overflow-hidden">
+    <div className="hidden justify-center items-center flex-col  lg:flex gap-2 overflow-hidden">
       <div className="flex gap-2  ">
         {keys1.map((i) => {
           return (

@@ -15,13 +15,13 @@ const App = () => {
   return (
     <>
       <div
-        className={`app-container  overflow-hidden flex  ${
+        className={`app-container dark:text-gray-400  w-screen h-screen overflow-hidden flex   ${
           isDarkMode ? "dark" : ""
         } `}
       >
-        <div className="dark:bg-[#121212] dark:text-gray-400 text-gray-700 flex ">
+        <div className="  flex w-full dark:bg-[#121212] text-gray-700 ">
           <motion.div
-            className="sidebar  border-r-2 w-64 overflow-hidden"
+            className="sidebar  border-r-2 w-64 overflow-hidden dark:text-white"
             animate={{ width: isSidebarOpen ? "4rem" : "16rem" }}
           >
             <motion.div className="flex  ">
@@ -46,7 +46,7 @@ const App = () => {
               </div>
             </div>
           </motion.div>
-          <div className="flex flex-col w-screen h-screen ">
+          <div className="flex   flex-col flex-1 ">
             <Header toggleDarkMode={toggleDarkMode} />
             <Main />
           </div>
