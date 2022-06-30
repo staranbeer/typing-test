@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Char from "./Char";
 import Modal from "./../../util/Modal";
 
-const defaultText = "Loremipsumdolorsitametconsecteturadipisicingel"
+const defaultText = "Loremipsumdolorsitametconsecteturadipisicingelaram"
   .replace(" ", "")
   .toLowerCase()
   .split("");
@@ -48,7 +48,7 @@ const TestText = ({
 
   return (
     <>
-      <motion.div className="text-center uppercase py-10">
+      <motion.div className="text-center uppercase py-10 h-40">
         <div className=" ">
           <Char
             makeRed={() => undefined}

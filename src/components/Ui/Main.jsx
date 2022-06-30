@@ -3,6 +3,8 @@ import Keyboard from "./Keyboard/Keyboard";
 import Modal from "./../util/Modal";
 import Stats from "./Stats/Stats";
 import TestText from "./Screen/TestText";
+import { Route, Routes } from "react-router-dom";
+import Stream from "./Stream/Stream";
 
 const Main = () => {
   const [pressedKey, setPressedKey] = useState("");
@@ -89,19 +91,27 @@ const Main = () => {
 
       <Stats right={right} wrong={wrong} />
       <div className="py-5 w-full hidden   rounded-md overflow-hidden font-bold border-gray-400 max-w-4xl lg:block items-center">
-        <TestText
-          setRight={setRight}
-          setWrong={setWrong}
-          clicked={clicked}
-          pressedKey={pressedKey}
-          isSame={isSame}
-          setIsSame={setIsSame}
-          hasStarted={hasStarted}
-          right={right}
-          wrong={wrong}
-          timerId={timerId}
-          setHasStarted={setHasStarted}
-        />
+        <Routes>
+          <Route
+            path={"/"}
+            element={
+              <TestText
+                setRight={setRight}
+                setWrong={setWrong}
+                clicked={clicked}
+                pressedKey={pressedKey}
+                isSame={isSame}
+                setIsSame={setIsSame}
+                hasStarted={hasStarted}
+                right={right}
+                wrong={wrong}
+                timerId={timerId}
+                setHasStarted={setHasStarted}
+              />
+            }
+          ></Route>
+          <Route path="/stream" element={<Stream />}></Route>
+        </Routes>
       </div>
       {hasStarted ? (
         <Keyboard

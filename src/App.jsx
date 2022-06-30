@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { HiMenu, HiMenuAlt1, HiMenuAlt2 } from "react-icons/hi";
 import Header from "./components/Ui/Header";
 import Main from "./components/Ui/Main";
+import Sidebar from "./components/Ui/Sidebar/Sidebar";
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -20,32 +21,11 @@ const App = () => {
         } `}
       >
         <div className="  flex w-full dark:bg-[#121212] text-gray-700 ">
-          <motion.div
-            className="sidebar  border-r-2 w-64 overflow-hidden dark:text-white"
-            animate={{ width: isSidebarOpen ? "4rem" : "16rem" }}
-          >
-            <motion.div className="flex  ">
-              <button
-                onClick={() => setIsSidebarOpen((i) => !i)}
-                className="sidebar__menu  px-3  py-4 "
-              >
-                <HiMenuAlt2 size={32} />
-              </button>
-            </motion.div>
-            <div
-              className={`menu__items flex flex-col ${
-                isSidebarOpen ? "opacity-0" : "opacity-100"
-              }`}
-            >
-              <div className="px-3 py-4 dark:text-white font-bold  hover:bg-[#1e1e1e] cursor-pointer uppercase hover:bg-gray-[#1e1e1e] ">
-                Character Attack
-              </div>
+          <Sidebar
+            toggleSidebar={setIsSidebarOpen}
+            isSidebarOpen={isSidebarOpen}
+          />
 
-              <div className="px-3 py-4 dark:text-white font-bold  hover:bg-[#1e1e1e] cursor-pointer uppercase hover:bg-gray-[#1e1e1e] ">
-                Stream
-              </div>
-            </div>
-          </motion.div>
           <div className="flex   flex-col flex-1 ">
             <Header toggleDarkMode={toggleDarkMode} />
             <Main />
