@@ -1,15 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components {
-  .icon-container {
-    @apply dark:hover:bg-black p-1.5 hover:bg-gray-300 rounded-full transition-colors;
-  }
-  .overlay {
-    @apply before:w-full before:h-full before:absolute relative before:top-0 before:left-0 overflow-hidden;
-  }
-  /* .direction-rtl {
-    direction: rtl;
-  } */
-}
